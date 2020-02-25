@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sat-ang"
+    }
+  },
+  "defaultProject": "sat-ang",
+  "cli": {
+    "analytics": false
+  }
 }
