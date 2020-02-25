@@ -47,7 +47,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
-
+import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import {MatTreeModule} from '@angular/material/tree';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -90,9 +92,8 @@ import {MatTreeModule} from '@angular/material/tree';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
-    
-
+    MatTreeModule,    
+    FormsModule,
     AppRoutingModule,
     
   ],
