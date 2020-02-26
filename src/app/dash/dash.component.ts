@@ -14,8 +14,8 @@ export class DashComponent implements OnInit {
 
   constructor(private apicall:ApiCallService) { }
 
-  //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  formData = new FormData();
   displayedColumns = [
   'Date',
   'No_of_Shares',
@@ -28,8 +28,8 @@ export class DashComponent implements OnInit {
   'Deliverable_Quantity',
   '__Deli__Qty_to_Traded_Qty',
   'WAP',
-  'Spread_Close-Open',
-  'Spread_High-Low'
+  'Spread_Close_Open',
+  'Spread_High_Low'
 ]
   pageSizeOptions = [6,20,50];
   totalNoOfItemsPaged:number = 0;
@@ -40,6 +40,8 @@ export class DashComponent implements OnInit {
   sortDirection:string="";
   toDate:string;
   fromDate:string;
+  dataLoaded:boolean = false;
+  serchKey:string=""
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('searchInput') searchText: ElementRef;
@@ -47,6 +49,7 @@ export class DashComponent implements OnInit {
   ngOnInit() {
 
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit(): void {
@@ -58,7 +61,7 @@ export class DashComponent implements OnInit {
     this.pageSize =  this.pageSizeOptions[0];
     this.totalNoOfItemsPaged = 0;
     this.activeSort = 'Date';
-    this.sortDirection = 'asc';
+    this.sortDirection = '';
     const terms$ = fromEvent<any>(this.searchText.nativeElement, 'keyup')
     .pipe(
          map(event => event.target.value),
@@ -71,10 +74,13 @@ export class DashComponent implements OnInit {
 
         
      }) 
+
+     
     )
     terms$.subscribe((res:any) => {
-     // console.log("search text is",res);
-      this.searchText = res;  
+    
+      this.serchKey = res;  
+      console.log("search text isssssssssss",this.searchText);
       this.pageIndex = 0;
       this.pageSize =  this.pageSizeOptions[0];
       this.totalNoOfItemsPaged = 0;
@@ -82,29 +88,40 @@ export class DashComponent implements OnInit {
       this.getSpiceJetData();
 
     })
+
 }
 
   getSpiceJetData = () => {
+    console.log("search text is",this.searchText)
+    this.dataLoaded = false;
       let getSpiceJetDataReq:any = {}; 
       getSpiceJetDataReq.pageSize = this.pageSize;
       getSpiceJetDataReq.length = this.totalNoOfItemsPaged;
       getSpiceJetDataReq.pageIndex = this.pageIndex;
       getSpiceJetDataReq.activeSort =  this.activeSort;
       getSpiceJetDataReq.sortDirection = this.sortDirection;
-      getSpiceJetDataReq.searchText = this.searchText;
+      getSpiceJetDataReq.searchText = this.serchKey;
       getSpiceJetDataReq.toDate = this.toDate;
       getSpiceJetDataReq.fromDate = this.fromDate;
       this.apicall.getSpiceJetData(getSpiceJetDataReq).subscribe(getSpiceJetDataRes=>{
-          this.totalNoOfItemsPaged = getSpiceJetDataRes.totalCount;
+
+        if(getSpiceJetDataRes.status == "success") {
+          this.dataLoaded = true;
+          this.totalNoOfItemsPaged = getSpiceJetDataRes.totalCount; 
           this.dataSource = new MatTableDataSource(getSpiceJetDataRes.data);
+        } else {
+          alert("No record Found");
+        }
+          
       })
   }
 
   changePageHandler = (pageEvent) => {
+    
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize  = pageEvent.pageSize;
     this.previousPageIndex = pageEvent.previousPageIndex;
-    //this.totalNoOfItemsPaged = this.totalNoOfItemsPaged;
+    
     this.getSpiceJetData();
   }
 
@@ -117,9 +134,20 @@ export class DashComponent implements OnInit {
 
   }
 
-  submit = ()=>{
-    console.log("to and from date are",this.toDate+"and from date",this.fromDate);
+  dateFileHandler = ()=>{
+   
+    this.getSpiceJetData();
+  }
 
+  uploadSpicejetFile = (event)=>{
+    this.formData = new FormData();
+   
+    this.formData.append("myfile", event.target.files[0]);
+    this.apicall.uploadAssignmentFile(this.formData)
+    .subscribe(response=>{
+      alert("file uploaded successfully");
+      this.getSpiceJetData();
+    })
   }
 
 
@@ -127,12 +155,7 @@ export class DashComponent implements OnInit {
 }
 
 export interface PeriodicElement {
-  Date: string;
-  'Open_Price': number;
-  'High_Price': number;
-  'Low_Price': number;
-  'WAP':Number;
-  'Spread_Close-Open':Number
+  
 
 }
 

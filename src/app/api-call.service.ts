@@ -13,4 +13,8 @@ export class ApiCallService {
   getSpiceJetData = (data) => {
     return this.http.post<any>(environment.baseUrl+"readSpiceJetData", data);
   }
+
+  uploadAssignmentFile = (data)=>{
+    return this.http.post<any>(environment.baseUrl+"uploadAssignmentFile", data);
+  }
 }
