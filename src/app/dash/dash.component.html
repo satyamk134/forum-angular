@@ -39,7 +39,8 @@
       
                   <ng-container  matColumnDef="Open_Price">
                       <th mat-header-cell *matHeaderCellDef   mat-sort-header >Open Price</th>
-                      <td mat-cell *matCellDef="let element"> {{element.Open_Price}} </td>
+                      <td mat-cell *matCellDef="let element">
+                        <input type="number" [value]="element.Open_Price" (input)="element.Open_Price = $event.target.value" ></td>
                   </ng-container>
       
                   <ng-container  matColumnDef="High_Price">
@@ -83,6 +84,11 @@
                 <ng-container  matColumnDef="Spread_High_Low">
                   <th mat-header-cell *matHeaderCellDef   mat-sort-header >Spread_High_Low </th>
                   <td mat-cell *matCellDef="let element"> {{element.Spread_High_Low}} </td>
+                </ng-container>
+
+                <ng-container  matColumnDef="edit">
+                  <th mat-header-cell *matHeaderCellDef   mat-sort-header >Action </th>
+                  <td mat-cell *matCellDef="let element;let i=index"><button type="submit" (click)="updateStock(element)"> update</button> </td>
                 </ng-container>
                 
                   <!-- Name Column -->

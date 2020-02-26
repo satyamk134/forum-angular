@@ -17,4 +17,11 @@ export class ApiCallService {
   uploadAssignmentFile = (data)=>{
     return this.http.post<any>(environment.baseUrl+"uploadAssignmentFile", data);
   }
+
+  updateStockPrice = (data)=>{
+    return this.http.put<any>(environment.baseUrl+"updateStockPrice", data);
+    
+  }
+
+
 }

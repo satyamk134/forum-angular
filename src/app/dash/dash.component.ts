@@ -29,7 +29,8 @@ export class DashComponent implements OnInit {
   '__Deli__Qty_to_Traded_Qty',
   'WAP',
   'Spread_Close_Open',
-  'Spread_High_Low'
+  'Spread_High_Low',
+  'edit'
 ]
   pageSizeOptions = [6,20,50];
   totalNoOfItemsPaged:number = 0;
@@ -148,6 +149,26 @@ export class DashComponent implements OnInit {
       alert("file uploaded successfully");
       this.getSpiceJetData();
     })
+  }
+
+  updateStock = (element) => {
+
+      let updateStockReq:any = {};
+      updateStockReq.filter = {};
+      updateStockReq.filter.No_of_Shares = element.No_of_Shares;
+
+      updateStockReq.update = {};
+      updateStockReq.update.Open_Price = element.Open_Price;
+
+
+      this.apicall.updateStockPrice(updateStockReq)
+      .subscribe(response=>{
+        if(response.status == "success"){
+            console.log("record updated");
+        }else{
+          console.log("Error in updating the record");
+        } 
+      })
   }
 
 
