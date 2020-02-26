@@ -16,7 +16,21 @@ export class DashComponent implements OnInit {
 
   //displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  displayedColumns = ['Date','Open_Price','High_Price','Low_Price','WAP','Spread_Close-Open']
+  displayedColumns = [
+  'Date',
+  'No_of_Shares',
+  'Open_Price',
+  'High_Price',
+  'Low_Price',
+  'Close_Price',
+  'No__of_Trades',
+  'Total_Turnover__Rs__',
+  'Deliverable_Quantity',
+  '__Deli__Qty_to_Traded_Qty',
+  'WAP',
+  'Spread_Close-Open',
+  'Spread_High-Low'
+]
   pageSizeOptions = [6,20,50];
   totalNoOfItemsPaged:number = 0;
   pageIndex:number = 0 
