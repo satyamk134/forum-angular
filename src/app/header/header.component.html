@@ -1,0 +1,45 @@
+<mat-toolbar>
+
+    <div class ='flex-container' *ngIf="loggedIn; else loginMenu">
+        <div class="menu icon">
+            My App
+        </div>
+        <div class="menu">
+            Icon1
+        </div>
+        <div class="menu">
+            Icon2
+        </div>
+
+        <div class="menu" (click)="logoutUser()">
+            Logout
+        </div>
+        
+    </div>
+    <ng-template #loginMenu>
+        <div class ='flex-container'>
+            <div class="menu icon">
+                My App
+            </div>
+            <div class="menu">
+                Icon1
+            </div>
+            <div class="menu">
+                Icon2
+            </div>
+    
+            <div class="menu" >
+                Login
+            </div>
+            
+            
+           
+        </div>
+    </ng-template>
+   
+
+    
+
+
+
+</mat-toolbar>

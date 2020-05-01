@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="form-wrapper">
+        <form class="login-form-wrapper" >
+
+            <div class="social-buttons">
+                <a href="#" class="fb btn">
+                  <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                </a>
+                <a (click)="continueWithGoogle()" href="#" class="google btn"><i class="fa fa-google fa-fw" >
+                  </i> Login with Google+
+                </a>
+            </div>
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput value="" placeholder="Enter Email Id">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput value="" type='password' placeholder="Enter Email Id">
+            </mat-form-field>
+            <button  mat-raised-button color="accent" class="login-button">LOGIN</button>
+        </form>
+       
+    </div>
+</div>

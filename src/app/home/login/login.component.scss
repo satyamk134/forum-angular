@@ -1,0 +1,54 @@
+.container{
+    width: 100%;
+    height: 100%;
+}
+.form-wrapper {
+    width: 30%;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+.login-form-wrapper{
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    //align-items: center;
+    justify-content: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.login-button{
+    align-self: flex-start;
+}
+
+.social-buttons{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+    font-size: 18px;
+
+}
+.social-buttons .btn{
+    padding: 5px;
+}
+
+.fb{
+    color: white;
+    text-decoration: none;
+    background-color: #596DA5;
+}
+.google{
+    color: white;
+    background-color: #E06052;
+    text-decoration: none;
+}
