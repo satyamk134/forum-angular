@@ -5,6 +5,7 @@ import { AppLayoutComponent} from './layouts/app-layout/app-layout.component'
 import { LoginComponent }from './home/login/login.component'
 //import { PostLoginRedirectComponent } from './home/post-login-redirect/post-login-redirect.component'
 import { HomeComponent } from './home/home/home.component'
+import { AuthGuardService } from './guards/auth.guard'
 const routes: Routes = [
   {
     path:'',
@@ -18,7 +19,8 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children:[{
       path:'',
-      component:DashComponent
+      component:DashComponent,
+      canActivate: [AuthGuardService]
     }]
   }
 

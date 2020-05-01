@@ -10,9 +10,9 @@ import { concat,map,tap } from 'rxjs/operators';
 export class AuthService {
   hasToken = ():boolean => {
     console.log(localStorage.getItem('token'))
-    if(localStorage.getItem('token') != 'undefined'){
+    if(localStorage.getItem('token') == ('undefined' || null || "")){
       console.log("came to get item");
-      return true
+      return false
     }
     return false;
     
