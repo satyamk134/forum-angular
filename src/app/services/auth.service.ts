@@ -23,7 +23,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   loginWithGoogle = ()=>{
-    return this.http.get<any>(environment.baseUrl+"auth/login");
+    return this.http.get<any>(environment.baseUrl+"auth/google");
   }
 
   getAccessToken = (reqObj) => {
