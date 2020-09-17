@@ -6,6 +6,7 @@ import { LoginComponent }from './home/login/login.component'
 //import { PostLoginRedirectComponent } from './home/post-login-redirect/post-login-redirect.component'
 import { HomeComponent } from './home/home/home.component'
 import { AuthGuardService } from './guards/auth.guard'
+import { ProductComponent } from './layouts/app-layout/pages/product/product.component';
 const routes: Routes = [
   {
     path:'',
@@ -22,7 +23,18 @@ const routes: Routes = [
       component:DashComponent,
       canActivate: [AuthGuardService]
     }]
+  },
+
+  { path: 'product', 
+    component: AppLayoutComponent,
+    children:[{
+      path:'',
+      component:ProductComponent,
+      canActivate: [AuthGuardService]
+    }]
   }
+
+
 
 ];
 

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -47,7 +46,7 @@ import {MatTreeModule} from '@angular/material/tree';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    
   ],
   exports:[
     A11yModule,

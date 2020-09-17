@@ -10,10 +10,10 @@ import { Observable } from 'rxjs';
 export class httpInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
-    console.log("came to interceptor")
+    //console.log("came to interceptor")
     let token = localStorage.getItem('token');
     //console.log("token is",token);
-    console.log(`Bearer ${token}`)
+    //console.log(`Bearer ${token}`)
     req = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`

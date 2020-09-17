@@ -8,6 +8,7 @@ export class AuthGuardService implements CanActivate {
   canActivate(): Observable<boolean> {
 
     this.auth.isLoggedIn().subscribe(res => {
+        console.log("res is in auth guard",res);
         if(!res){
             this.router.navigate(['/']);
             return false;

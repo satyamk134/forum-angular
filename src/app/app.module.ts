@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -14,9 +15,10 @@ import { HTTP_INTERCEPTORS} from '@angular/common/http'
 import { httpInterceptor }  from './interceptors/http.interceptor'
 import { AuthGuardService } from './guards/auth.guard'
 import { LoginComponent } from './home/login/login.component';
+import {ProductComponent } from './layouts/app-layout/pages/product/product.component'
 //import { PostLoginRedirectComponent } from './home/post-login-redirect/post-login-redirect.component';
-import { HomeComponent } from './home/home/home.component'
-
+import { HomeComponent } from './home/home/home.component';
+import {MatIconModule} from '@angular/material/icon'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,16 +27,20 @@ import { HomeComponent } from './home/home/home.component'
     AppLayoutComponent,
     ChatBoxComponent,
     LoginComponent,
+    ProductComponent,
     //PostLoginRedirectComponent,
-    HomeComponent
+    HomeComponent,
+
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    MatIconModule
     
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true },AuthGuardService],

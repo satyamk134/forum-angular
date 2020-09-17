@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import { AuthService } from '../services/auth.service'
 import { Router } from '@angular/router'
 @Component({
@@ -8,44 +8,21 @@ import { Router } from '@angular/router'
 })
 export class HeaderComponent implements OnInit {
  
-  loggedIn:boolean;
+  @Input() loggedIn:boolean;
   constructor(private auth: AuthService,
     private router:Router
     ) { }
 
   ngOnInit(): void {
 
-    this.changeMenus();
+    console.log("logged in is",this.loggedIn);
   }
+  
 
-  changeMenus = () => {
-    console.log("came inside change menus")
-      this.auth.isLoggedIn()
-      .subscribe(response => {
-        console.log("response is",response);
-        this.loggedIn = response;
-        if(this.loggedIn){
-              this.router.navigate(['dashboard'])
-        }else{
-          this.router.navigate(['/'])
-        }
-      })
-    
-  } 
+   
 
   logoutUser = ()=>{
-    this.auth.logout()
-
-    this.auth.isLoggedIn()
-      .subscribe(response=>{
-        console.log("response is",response);
-        this.loggedIn = response;
-        if(this.loggedIn){
-              this.router.navigate(['dashboard'])
-        }else{
-          this.router.navigate(['/'])
-        }
-      })
+    this.auth.logout();
   }
 
 }
