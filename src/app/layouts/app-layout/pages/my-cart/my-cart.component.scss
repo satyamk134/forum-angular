@@ -1,0 +1,25 @@
+.summary-item{
+    display: flex;
+    justify-content: space-between;
+    
+}
+button:focus {
+    outline: none;
+    box-shadow: none;
+  }
+.items-buttons {
+    border: none;
+    outline: none;
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.item-count-box {
+    width: 100%;
+    text-align: center;
+  
+}
+.items-border{
+    border: solid 1px black;
+}

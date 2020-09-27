@@ -18,7 +18,8 @@ import { LoginComponent } from './home/login/login.component';
 import {ProductComponent } from './layouts/app-layout/pages/product/product.component'
 //import { PostLoginRedirectComponent } from './home/post-login-redirect/post-login-redirect.component';
 import { HomeComponent } from './home/home/home.component';
-import {MatIconModule} from '@angular/material/icon'; 
+import {MatIconModule} from '@angular/material/icon';
+import { MyCartComponent } from './layouts/app-layout/pages/my-cart/my-cart.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import {MatIconModule} from '@angular/material/icon';
     ProductComponent,
     //PostLoginRedirectComponent,
     HomeComponent,
+    MyCartComponent,
 
   ],
   imports: [

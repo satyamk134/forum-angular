@@ -7,6 +7,7 @@ import { LoginComponent }from './home/login/login.component'
 import { HomeComponent } from './home/home/home.component'
 import { AuthGuardService } from './guards/auth.guard'
 import { ProductComponent } from './layouts/app-layout/pages/product/product.component';
+import { MyCartComponent } from './layouts/app-layout/pages/my-cart/my-cart.component';
 const routes: Routes = [
   {
     path:'',
@@ -30,6 +31,15 @@ const routes: Routes = [
     children:[{
       path:'',
       component:ProductComponent,
+      canActivate: [AuthGuardService]
+    }]
+  },
+
+  { path: 'cart', 
+    component: AppLayoutComponent,
+    children:[{
+      path:'',
+      component:MyCartComponent,
       canActivate: [AuthGuardService]
     }]
   }

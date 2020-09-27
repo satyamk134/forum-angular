@@ -11,7 +11,9 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.products = [];
-    this.shopByCategory()
+    this.getUserCart();
+    this.shopByCategory();
+
   }
 
   shopByCategory = ()=>{
@@ -25,11 +27,31 @@ export class ProductComponent implements OnInit {
 
   //----- add to cart starts here
   addToCartHandler = (data)=> {
+
       this.ProductService.addToCartHandler({productId: data._id})
       .subscribe(response=>{
         console.log("Response is",response);
+        let curv = this.ProductService.userCart.getValue()
+        this.ProductService.userCart.next({noOfItems:++curv.noOfItems})
+
+
+        
       })
   }
+
+
+  //-----get user cart info
+  getUserCart = ()=>{
+    this.ProductService.getCartDetails()
+      .subscribe(response=>{
+        console.log("Response is",response);
+        this.ProductService.getCartData(response);
+        
+      })
+    
+  }
+
+
 
   
 
